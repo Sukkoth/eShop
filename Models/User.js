@@ -22,6 +22,11 @@ const userSchema = new mongoose.Schema({
     },
     birthdate: {
         type: Date,
+        /**since it comes as a string, 
+        /create a date object from it*/
+        set(givenDate){
+            return new Date(givenDate)
+        }
     },
     profile_picture: {
         type: String,

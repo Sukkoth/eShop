@@ -11,7 +11,7 @@ const api_auth = asyncHandler(async (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1]
 
     const decodedId = jwt.decode(token).id
-    const authUser = await User.findById(decodedId)
+    const authUser = await User.findById(decodedId).select('-password')
 
     if (authUser) {
         if (!authUser.isBlocked) {
